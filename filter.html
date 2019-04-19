@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Filter</title>
+
+    <!-- Load style sheets -->
+    <link href=
+                  "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
+
+    <link href="filterStyle.css" rel="stylesheet">
+
+    <!-- Use mobile-aware viewport -->
+    <meta content=
+                  "width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Load any supplemental Javascript libraries here -->
+    <script src=
+                    "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src=
+                    "https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js">
+    </script>
+
+    <script src="filterFunctionality.js"></script>
+    <script src="restaurant.js"></script>
+    <!--<script async defer-->
+            <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwTzsFbEjBdIar9QwqQT5Km4cguXpEkCM&callback=myMap"></script>-->
+
+    <script>
+        $(document).ready(function () {
+            //myMap();
+        });
+    </script>
+</head>
+
+<body>
+
+<div id="map"></div>
+<script>
+    let map;
+    function initMap() {
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 18
+        });
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                map.setCenter(pos);
+                let infoWindow = new google.maps.InfoWindow();
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('YOU ARE HERE');
+
+                var marker = new google.maps.Marker({
+                    position: pos,
+                    map:map,
+                    title:"You are Here"
+                });
+                marker.addListener('click', function() {
+                    infoWindow.open(map, marker);
+                });
+            }, function() {
+            });
+        }
+    }
+
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwTzsFbEjBdIar9QwqQT5Km4cguXpEkCM&callback=initMap">
+</script>
+<!--
+div used to hold the map script below used to populate the map.
+-->
+
+<div id="categories" style="display: block;">
+    <div id="distance">
+        <span id="labels">
+            <label for="distanceByMiles" class="labelTxt">By Distance: </label>
+            <label id = distanceValue class="labelTxt"> 25 </label>
+        </span>
+        <input type="range" min="0" max="50" value="25" id="distanceByMiles" onchange="setLabelVal()">
+    </div>
+    <div id="cuisine">
+        <label class="labelTxt">By Cuisine</label>
+        <br>
+        <table id="chkBoxes"></table>
+        <script>populateChkBoxes();</script>
+    </div>
+    <div id="price">
+        <label class="labelTxt">By Price</label>
+        <br>
+        <table id="priceVals"></table>
+        <script>populatePrice()</script>
+    </div>
+</div>
+<div id="results" style="display: none;"></div>
+<div id="search">
+    <button id="btn" onclick="getChecks(this)" type="button"> GO!</button>
+</div>
+
+</body>
+
+</html>

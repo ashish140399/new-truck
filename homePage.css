@@ -1,13 +1,16 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 
 body {
-    height: 812px;
-    width: 375px;
+    position: relative;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 /* This is for the search box*/
 .search-box {
     position: relative;
     top: 10%;
+    width: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #2f3640;
@@ -108,7 +111,7 @@ body {
 }
 
 #map {
-    margin-top: 25%;
+    margin-top: 18%;
     width: 100%;
     height: 50%;
 }
@@ -130,6 +133,74 @@ body {
 
 
 
+/*--------------------ashish---------------*/
+ @media only screen and (min-width: 768px){
+    #map{
+        margin-top: 10%;
+    }
 
+ }
 
+.restaurant_type{
+    left: 10%;
+    position: relative;
+    font-size: 20px;
+}
 
+#restaurant_details{
+     left: 10%;
+    position: relative;
+}
+#restaurant_icon{
+    left: 5%;
+    position: relative;
+
+}
+#restaurant_dis{
+     left: 20%;
+    position: relative;
+}
+
+ @media only screen and (max-width: 768px){
+    .restaurant_type{
+    left: 1%;
+    position: relative;
+    font-size: 20px;
+}
+
+#restaurant_details{
+     left: 18%;
+    position: relative;
+}
+#restaurant_icon{
+    left: 2%;
+    position: relative;
+
+}
+#restaurant_dis{
+     left: 20%;
+    position: relative;
+}
+    
+}
+
+@media only screen and (max-width: 425px){
+    .restaurant_type{
+    left: 1%;
+    position: relative;
+    font-size: 16px;
+}
+
+#restaurant_details{
+     left: 18%;
+    position: relative;
+}
+#restaurant_icon{
+    left: 2%;
+    position: relative;
+
+}
+#restaurant_dis{
+     left: 20%;
+    position: relative;
+}
